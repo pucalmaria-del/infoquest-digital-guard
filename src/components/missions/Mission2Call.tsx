@@ -10,18 +10,18 @@ export function Mission2Call({ mission }: { mission: Mission }) {
   const [turn, setTurn] = useState(0);
   const [leaked, setLeaked] = useState(false);
   const [log, setLog] = useState<{ who: "caller" | "me"; text: string }[]>([
-    { who: "caller", text: mission2.turns[0].caller[lang] },
+    { who: "caller", text: mission2.turns[0]!.caller[lang] },
   ]);
 
   const restart = () => {
     setStep(0);
     setTurn(0);
     setLeaked(false);
-    setLog([{ who: "caller", text: mission2.turns[0].caller[lang] }]);
+    setLog([{ who: "caller", text: mission2.turns[0]!.caller[lang] }]);
   };
 
   const choose = (index: number) => {
-    const option = mission2.turns[turn].options[index];
+    const option = mission2.turns[turn]!.options[index]!;
     const next = [...log, { who: "me" as const, text: option.text[lang] }];
     if (option.kind === "leak") {
       setLeaked(true);
@@ -40,7 +40,7 @@ export function Mission2Call({ mission }: { mission: Mission }) {
       setStep(2);
       return;
     }
-    next.push({ who: "caller", text: mission2.turns[nextTurn].caller[lang] });
+    next.push({ who: "caller", text: mission2.turns[nextTurn]!.caller[lang] });
     setLog(next);
     setTurn(nextTurn);
   };
@@ -83,7 +83,7 @@ export function Mission2Call({ mission }: { mission: Mission }) {
             <legend className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
               {t.stepChoice}
             </legend>
-            {mission2.turns[turn].options.map((option, i) => (
+            {mission2.turns[turn]!.options.map((option, i) => (
               <button
                 key={i}
                 type="button"
@@ -96,7 +96,7 @@ export function Mission2Call({ mission }: { mission: Mission }) {
             <button
               type="button"
               onClick={() => {
-                setLog([...log, { who: "me", text: mission2.turns[2].options[0].text[lang] }]);
+                setLog([...log, { who: "me", text: mission2.turns[2]!.options[0]!.text[lang] }]);
                 setStep(2);
               }}
               className="focus-ring mt-2 flex w-full items-center justify-center gap-2 rounded-xl border border-danger/60 px-4 py-3 text-sm font-semibold text-danger hover:bg-danger/10"
