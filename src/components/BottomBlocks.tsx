@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { QRCodeSVG } from "qrcode.react";
 import { Download, Image as ImageIcon, QrCode, Users, PlayCircle, Trash2 } from "lucide-react";
@@ -37,7 +37,11 @@ export function BottomBlocks() {
   const { lang, t } = useI18n();
   const [open, setOpen] = useState<BlockKey | null>(null);
   const [logo, setLogo] = useState<string | null>(null);
-  const url = typeof window !== "undefined" ? window.location.origin : "https://lovable.dev";
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    setUrl(window.location.origin);
+  }, []);
 
   const readFile = (file?: File | null) => {
     if (!file || !file.type.startsWith("image/")) return;
@@ -93,8 +97,10 @@ export function BottomBlocks() {
           ariaLabel={`${t.a11y.openBlock}: ${t.bottom.qr}`}
           onClick={() => setOpen("qr")}
         >
-          <span className="rounded-lg bg-foreground p-2">
-            <QRCodeSVG value={url} size={72} bgColor="#ffffff" fgColor="#0b1220" />
+          <span className="grid size-[88px] place-items-center rounded-lg bg-foreground p-2">
+            {url ? (
+              <QRCodeSVG value={url} size={72} bgColor="#ffffff" fgColor="#0b1220" />
+            ) : null}
           </span>
         </BlockShell>
 
@@ -161,8 +167,10 @@ export function BottomBlocks() {
                 <DialogDescription>{t.bottom.qrHint}</DialogDescription>
               </DialogHeader>
               <div className="flex flex-col items-center gap-4">
-                <span className="rounded-2xl bg-foreground p-4">
-                  <QRCodeSVG id="iq-qr-large" value={url} size={240} bgColor="#ffffff" fgColor="#0b1220" />
+                <span className="grid size-[272px] place-items-center rounded-2xl bg-foreground p-4">
+                  {url ? (
+                    <QRCodeSVG id="iq-qr-large" value={url} size={240} bgColor="#ffffff" fgColor="#0b1220" />
+                  ) : null}
                 </span>
                 <code className="break-all text-xs text-muted-foreground">{url}</code>
                 <button
