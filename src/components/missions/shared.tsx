@@ -234,6 +234,7 @@ export function TheoryPanel({
           <Medal className="size-4 text-gold" aria-hidden="true" />
           {t.badgeUnlocked}: <strong className="font-semibold">{badge[lang]}</strong>
         </p>
+        {reaction ? <ReactionPanel reaction={reaction} tone="good" /> : null}
       </Panel>
 
       <div className="flex flex-wrap gap-3">
