@@ -114,17 +114,48 @@ export function StoryPanel({ brief, onNext }: { brief: Bi; onNext: () => void })
   );
 }
 
+export function ReactionPanel({
+  reaction,
+  tone,
+}: {
+  reaction: Reactions["good"];
+  tone: "good" | "bad";
+}) {
+  const { lang } = useI18n();
+  const character = characters[reaction.characterId];
+  return (
+    <div
+      className={`animate-fade-in mt-4 flex items-center gap-4 rounded-2xl border p-4 ${
+        tone === "good" ? "border-success/50 bg-success/10" : "border-danger/50 bg-danger/10"
+      }`}
+    >
+      <CharacterEmotion characterId={reaction.characterId} emotion={reaction.emotion} size={64} />
+      <div className="text-sm">
+        <p className="font-semibold text-foreground">
+          {character?.name[lang]}
+          <span className="ml-2 text-xs font-normal uppercase tracking-widest text-muted-foreground">
+            {character?.role[lang]} · {emotionLabel[reaction.emotion][lang]}
+          </span>
+        </p>
+        <p className="mt-1 leading-relaxed text-muted-foreground">{reaction.line[lang]}</p>
+      </div>
+    </div>
+  );
+}
+
 export function ConsequencePanel({
   success,
   good,
   bad,
   extra,
+  reactions,
   onNext,
 }: {
   success: boolean;
   good: Bi;
   bad: Bi;
   extra?: ReactNode;
+  reactions?: Reactions;
   onNext: () => void;
 }) {
   const { lang, t } = useI18n();
