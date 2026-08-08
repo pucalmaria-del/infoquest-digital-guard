@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Play, Search, CheckCircle2, XCircle } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
-import { mission4, type Mission } from "@/data/missions";
+import { mission4, reactions4, type Mission } from "@/data/missions";
 import { ConsequencePanel, MissionShell, Panel, PrimaryButton, StoryPanel, TheoryPanel } from "./shared";
 
 export function Mission4Deepfake({ mission }: { mission: Mission }) {
@@ -100,6 +100,7 @@ export function Mission4Deepfake({ mission }: { mission: Mission }) {
           success={success}
           good={mission4.goodOutcome}
           bad={mission4.badOutcome}
+          reactions={reactions4}
           extra={
             <ul className="mt-4 space-y-2">
               {mission4.clues.map((clue) => {
@@ -130,6 +131,7 @@ export function Mission4Deepfake({ mission }: { mission: Mission }) {
           missionId={mission.id}
           points={mission4.theory}
           badge={mission4.badge}
+          reaction={reactions4.good}
           onReplay={() => {
             setPicked([]);
             setVerdict(null);

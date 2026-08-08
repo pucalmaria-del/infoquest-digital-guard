@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PhoneOff, ShieldX, User } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
-import { mission2, type Mission } from "@/data/missions";
+import { mission2, reactions2, type Mission } from "@/data/missions";
 import { ConsequencePanel, MissionShell, Panel, StoryPanel, TheoryPanel } from "./shared";
 
 export function Mission2Call({ mission }: { mission: Mission }) {
@@ -113,6 +113,7 @@ export function Mission2Call({ mission }: { mission: Mission }) {
           success={!leaked}
           good={mission2.goodOutcome}
           bad={mission2.badOutcome}
+          reactions={reactions2}
           extra={
             leaked ? (
               <p className="mt-4 flex items-center gap-2 rounded-xl bg-danger/15 px-4 py-3 text-sm text-danger">
@@ -135,6 +136,7 @@ export function Mission2Call({ mission }: { mission: Mission }) {
           missionId={mission.id}
           points={mission2.theory}
           badge={mission2.badge}
+          reaction={reactions2.good}
           onReplay={restart}
         />
       )}
