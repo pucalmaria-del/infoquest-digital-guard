@@ -198,11 +198,13 @@ export function TheoryPanel({
   missionId,
   points,
   badge,
+  reaction,
   onReplay,
 }: {
   missionId: number;
   points: Record<"ro" | "ru", string[]>;
   badge: Bi;
+  reaction?: Reactions["good"];
   onReplay: () => void;
 }) {
   const { lang, t } = useI18n();
