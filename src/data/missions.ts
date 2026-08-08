@@ -19,7 +19,7 @@ export type Mission = {
 export const missions: Mission[] = [
   {
     id: 1,
-    status: "soon",
+    status: "playable",
     color: "var(--danger)",
     icon: "user-lock",
     x: 12,
@@ -47,7 +47,7 @@ export const missions: Mission[] = [
   },
   {
     id: 3,
-    status: "soon",
+    status: "playable",
     color: "var(--gold)",
     icon: "gift",
     x: 8,
@@ -89,7 +89,7 @@ export const missions: Mission[] = [
   },
   {
     id: 6,
-    status: "soon",
+    status: "playable",
     color: "var(--neon-soft)",
     icon: "map-pin",
     x: 92,
@@ -103,7 +103,7 @@ export const missions: Mission[] = [
   },
   {
     id: 7,
-    status: "soon",
+    status: "playable",
     color: "var(--violet)",
     icon: "shield-alert",
     x: 92,
@@ -117,7 +117,7 @@ export const missions: Mission[] = [
   },
   {
     id: 8,
-    status: "soon",
+    status: "playable",
     color: "var(--gold)",
     icon: "link-2-off",
     x: 88,
