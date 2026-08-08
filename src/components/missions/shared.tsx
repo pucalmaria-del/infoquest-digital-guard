@@ -4,7 +4,9 @@ import type { ReactNode } from "react";
 import { useI18n } from "@/lib/i18n";
 import { useProgress } from "@/lib/progress";
 import { XP_PER_MISSION } from "@/data/config";
-import type { Bi, Mission } from "@/data/missions";
+import type { Bi, Mission, Reactions } from "@/data/missions";
+import { characters, emotionLabel } from "@/data/characters";
+import { CharacterEmotion } from "@/components/CharacterEmotion";
 
 export function PrimaryButton({
   children,
