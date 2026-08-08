@@ -3,7 +3,10 @@ import { Header } from "@/components/Header";
 import { Mission2Call } from "@/components/missions/Mission2Call";
 import { Mission4Deepfake } from "@/components/missions/Mission4Deepfake";
 import { Mission5Bilingual } from "@/components/missions/Mission5Bilingual";
-import { missions } from "@/data/missions";
+import { MissionChecklist } from "@/components/missions/MissionChecklist";
+import { MissionPick } from "@/components/missions/MissionPick";
+import { MissionChat } from "@/components/missions/MissionChat";
+import { missions, mission1, mission3, mission6, mission7, mission8 } from "@/data/missions";
 
 export const Route = createFileRoute("/mission/$id")({
   head: () => ({
