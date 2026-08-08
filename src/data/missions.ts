@@ -445,8 +445,3 @@ export const mission5 = {
   badge: { ro: "Insigna „Punte lingvistică”", ru: "Бейдж «Языковой мост»" },
 };
 
-export const badgeByMission: Record<number, Bi> = {
-  2: mission2.badge,
-  4: mission4.badge,
-  5: mission5.badge,
-};
