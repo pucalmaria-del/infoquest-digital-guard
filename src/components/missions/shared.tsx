@@ -180,6 +180,12 @@ export function ConsequencePanel({
           {(success ? good : bad)[lang]}
         </p>
         {extra}
+        {reactions ? (
+          <ReactionPanel
+            reaction={success ? reactions.good : reactions.bad}
+            tone={success ? "good" : "bad"}
+          />
+        ) : null}
       </Panel>
       <PrimaryButton onClick={onNext}>
         {t.next} <ArrowRight className="size-4" aria-hidden="true" />
