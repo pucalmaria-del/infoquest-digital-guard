@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import type { Mission, PickMission } from "@/data/missions";
-import { ConsequencePanel, MissionShell, Panel, PrimaryButton, StoryPanel, TheoryPanel } from "./shared";
+import { ConsequencePanel, MissionShell, PrimaryButton, StoryPanel, TheoryPanel } from "./shared";
 
 /** Generic "pick the only legitimate option" mission. */
 export function MissionPick({ mission, data }: { mission: Mission; data: PickMission }) {
