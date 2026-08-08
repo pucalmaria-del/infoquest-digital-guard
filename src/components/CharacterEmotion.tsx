@@ -30,7 +30,7 @@ export function CharacterEmotion({
   size?: number;
 }) {
   const { lang } = useI18n();
-  const c = characters[characterId] ?? characters.vig!;
+  const c = characters[characterId] ?? characters["vig"]!;
   const [browL, browR] = brows[emotion];
   const eyeY = emotion === "joy" ? 48 : 49;
 
