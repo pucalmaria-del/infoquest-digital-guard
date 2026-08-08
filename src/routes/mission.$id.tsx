@@ -56,9 +56,25 @@ function MissionPage() {
     <>
       <Header />
       <main>
+        {mission.id === 1 && <MissionChecklist mission={mission} data={mission1} />}
         {mission.id === 2 && <Mission2Call mission={mission} />}
+        {mission.id === 3 && <MissionPick mission={mission} data={mission3} />}
         {mission.id === 4 && <Mission4Deepfake mission={mission} />}
         {mission.id === 5 && <Mission5Bilingual mission={mission} />}
+        {mission.id === 6 && <MissionChecklist mission={mission} data={mission6} />}
+        {mission.id === 7 && (
+          <MissionChat
+            mission={mission}
+            data={mission7}
+            exitLabel={{
+              ro: "Raportează contul și ieși din discuție",
+              ru: "Пожаловаться на аккаунт и выйти из спора",
+            }}
+            goodTag={{ ro: "Conflict dezamorsat", ru: "Конфликт погашен" }}
+            badTag={{ ro: "Trolul a primit combustibil", ru: "Тролль получил топливо" }}
+          />
+        )}
+        {mission.id === 8 && <MissionChecklist mission={mission} data={mission8} />}
       </main>
     </>
   );
