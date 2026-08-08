@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CheckCircle2, XCircle, Info } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
-import { mission5, type Mission } from "@/data/missions";
+import { mission5, reactions5, type Mission } from "@/data/missions";
 import { ConsequencePanel, MissionShell, Panel, PrimaryButton, StoryPanel, TheoryPanel } from "./shared";
 
 export function Mission5Bilingual({ mission }: { mission: Mission }) {
@@ -87,6 +87,7 @@ export function Mission5Bilingual({ mission }: { mission: Mission }) {
           success={success}
           good={mission5.goodOutcome}
           bad={mission5.badOutcome}
+          reactions={reactions5}
           extra={
             <div className="mt-4 space-y-3">
               <p className="text-xs uppercase tracking-widest text-success">
@@ -123,6 +124,7 @@ export function Mission5Bilingual({ mission }: { mission: Mission }) {
           missionId={mission.id}
           points={mission5.theory}
           badge={mission5.badge}
+          reaction={reactions5.good}
           onReplay={() => {
             setPicked([]);
             setStep(0);

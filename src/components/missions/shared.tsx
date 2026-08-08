@@ -4,7 +4,9 @@ import type { ReactNode } from "react";
 import { useI18n } from "@/lib/i18n";
 import { useProgress } from "@/lib/progress";
 import { XP_PER_MISSION } from "@/data/config";
-import type { Bi, Mission } from "@/data/missions";
+import type { Bi, Mission, Reactions } from "@/data/missions";
+import { characters, emotionLabel } from "@/data/characters";
+import { CharacterEmotion } from "@/components/CharacterEmotion";
 
 export function PrimaryButton({
   children,
@@ -114,17 +116,48 @@ export function StoryPanel({ brief, onNext }: { brief: Bi; onNext: () => void })
   );
 }
 
+export function ReactionPanel({
+  reaction,
+  tone,
+}: {
+  reaction: Reactions["good"];
+  tone: "good" | "bad";
+}) {
+  const { lang } = useI18n();
+  const character = characters[reaction.characterId];
+  return (
+    <div
+      className={`animate-fade-in mt-4 flex items-center gap-4 rounded-2xl border p-4 ${
+        tone === "good" ? "border-success/50 bg-success/10" : "border-danger/50 bg-danger/10"
+      }`}
+    >
+      <CharacterEmotion characterId={reaction.characterId} emotion={reaction.emotion} size={64} />
+      <div className="text-sm">
+        <p className="font-semibold text-foreground">
+          {character?.name[lang]}
+          <span className="ml-2 text-xs font-normal uppercase tracking-widest text-muted-foreground">
+            {character?.role[lang]} · {emotionLabel[reaction.emotion][lang]}
+          </span>
+        </p>
+        <p className="mt-1 leading-relaxed text-muted-foreground">{reaction.line[lang]}</p>
+      </div>
+    </div>
+  );
+}
+
 export function ConsequencePanel({
   success,
   good,
   bad,
   extra,
+  reactions,
   onNext,
 }: {
   success: boolean;
   good: Bi;
   bad: Bi;
   extra?: ReactNode;
+  reactions?: Reactions;
   onNext: () => void;
 }) {
   const { lang, t } = useI18n();
@@ -147,6 +180,12 @@ export function ConsequencePanel({
           {(success ? good : bad)[lang]}
         </p>
         {extra}
+        {reactions ? (
+          <ReactionPanel
+            reaction={success ? reactions.good : reactions.bad}
+            tone={success ? "good" : "bad"}
+          />
+        ) : null}
       </Panel>
       <PrimaryButton onClick={onNext}>
         {t.next} <ArrowRight className="size-4" aria-hidden="true" />
@@ -159,11 +198,13 @@ export function TheoryPanel({
   missionId,
   points,
   badge,
+  reaction,
   onReplay,
 }: {
   missionId: number;
   points: Record<"ro" | "ru", string[]>;
   badge: Bi;
+  reaction?: Reactions["good"];
   onReplay: () => void;
 }) {
   const { lang, t } = useI18n();
@@ -193,6 +234,7 @@ export function TheoryPanel({
           <Medal className="size-4 text-gold" aria-hidden="true" />
           {t.badgeUnlocked}: <strong className="font-semibold">{badge[lang]}</strong>
         </p>
+        {reaction ? <ReactionPanel reaction={reaction} tone="good" /> : null}
       </Panel>
 
       <div className="flex flex-wrap gap-3">

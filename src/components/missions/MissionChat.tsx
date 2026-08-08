@@ -1,30 +1,43 @@
 import { useState } from "react";
-import { PhoneOff, ShieldX, User } from "lucide-react";
+import { MessageSquareX, ShieldX, ShieldCheck, User } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
-import { mission2, reactions2, type Mission } from "@/data/missions";
+import type { ChatMission, Mission } from "@/data/missions";
 import { ConsequencePanel, MissionShell, Panel, StoryPanel, TheoryPanel } from "./shared";
 
-export function Mission2Call({ mission }: { mission: Mission }) {
+/** Generic dialogue mission: pick replies, avoid the "leak"/escalation options. */
+export function MissionChat({
+  mission,
+  data,
+  exitLabel,
+  goodTag,
+  badTag,
+}: {
+  mission: Mission;
+  data: ChatMission;
+  exitLabel: { ro: string; ru: string };
+  goodTag: { ro: string; ru: string };
+  badTag: { ro: string; ru: string };
+}) {
   const { lang, t } = useI18n();
   const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
   const [turn, setTurn] = useState(0);
-  const [leaked, setLeaked] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [log, setLog] = useState<{ who: "caller" | "me"; text: string }[]>([
-    { who: "caller", text: mission2.turns[0]!.caller[lang] },
+    { who: "caller", text: data.turns[0]!.caller[lang] },
   ]);
 
   const restart = () => {
     setStep(0);
     setTurn(0);
-    setLeaked(false);
-    setLog([{ who: "caller", text: mission2.turns[0]!.caller[lang] }]);
+    setFailed(false);
+    setLog([{ who: "caller", text: data.turns[0]!.caller[lang] }]);
   };
 
   const choose = (index: number) => {
-    const option = mission2.turns[turn]!.options[index]!;
+    const option = data.turns[turn]!.options[index]!;
     const next = [...log, { who: "me" as const, text: option.text[lang] }];
     if (option.kind === "leak") {
-      setLeaked(true);
+      setFailed(true);
       setLog(next);
       setStep(2);
       return;
@@ -35,19 +48,21 @@ export function Mission2Call({ mission }: { mission: Mission }) {
       return;
     }
     const nextTurn = turn + 1;
-    if (nextTurn >= mission2.turns.length) {
+    if (nextTurn >= data.turns.length) {
       setLog(next);
       setStep(2);
       return;
     }
-    next.push({ who: "caller", text: mission2.turns[nextTurn]!.caller[lang] });
+    next.push({ who: "caller", text: data.turns[nextTurn]!.caller[lang] });
     setLog(next);
     setTurn(nextTurn);
   };
 
+  const lastExit = data.turns[data.turns.length - 1]!.options.find((o) => o.kind === "hangup");
+
   return (
     <MissionShell mission={mission} step={step}>
-      {step === 0 && <StoryPanel brief={mission2.brief} onNext={() => setStep(1)} />}
+      {step === 0 && <StoryPanel brief={data.brief} onNext={() => setStep(1)} />}
 
       {step === 1 && (
         <div className="space-y-5">
@@ -57,10 +72,10 @@ export function Mission2Call({ mission }: { mission: Mission }) {
                 <User className="size-5 text-neon" aria-hidden="true" />
               </span>
               <span className="text-sm">
-                <span className="block font-semibold text-foreground">
-                  {mission2.callerName[lang]}
+                <span className="block font-semibold text-foreground">{data.callerName[lang]}</span>
+                <span className="block text-xs text-danger">
+                  {lang === "ro" ? "sursă neverificată" : "непроверенный источник"}
                 </span>
-                <span className="block text-xs text-danger">+373 6• ••• ••</span>
               </span>
             </div>
             <ul className="mt-4 space-y-3" aria-live="polite">
@@ -83,7 +98,7 @@ export function Mission2Call({ mission }: { mission: Mission }) {
             <legend className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
               {t.stepChoice}
             </legend>
-            {mission2.turns[turn]!.options.map((option, i) => (
+            {data.turns[turn]!.options.map((option, i) => (
               <button
                 key={i}
                 type="button"
@@ -93,37 +108,39 @@ export function Mission2Call({ mission }: { mission: Mission }) {
                 {option.text[lang]}
               </button>
             ))}
-            <button
-              type="button"
-              onClick={() => {
-                setLog([...log, { who: "me", text: mission2.turns[2]!.options[0]!.text[lang] }]);
-                setStep(2);
-              }}
-              className="focus-ring mt-2 flex w-full items-center justify-center gap-2 rounded-xl border border-danger/60 px-4 py-3 text-sm font-semibold text-danger hover:bg-danger/10"
-            >
-              <PhoneOff className="size-4" aria-hidden="true" />
-              {lang === "ro" ? "Închide și blochează numărul" : "Сбросить и заблокировать номер"}
-            </button>
+            {lastExit ? (
+              <button
+                type="button"
+                onClick={() => {
+                  setLog([...log, { who: "me", text: lastExit.text[lang] }]);
+                  setStep(2);
+                }}
+                className="focus-ring mt-2 flex w-full items-center justify-center gap-2 rounded-xl border border-danger/60 px-4 py-3 text-sm font-semibold text-danger hover:bg-danger/10"
+              >
+                <MessageSquareX className="size-4" aria-hidden="true" />
+                {exitLabel[lang]}
+              </button>
+            ) : null}
           </fieldset>
         </div>
       )}
 
       {step === 2 && (
         <ConsequencePanel
-          success={!leaked}
-          good={mission2.goodOutcome}
-          bad={mission2.badOutcome}
-          reactions={reactions2}
+          success={!failed}
+          good={data.goodOutcome}
+          bad={data.badOutcome}
+          reactions={data.reactions}
           extra={
-            leaked ? (
+            failed ? (
               <p className="mt-4 flex items-center gap-2 rounded-xl bg-danger/15 px-4 py-3 text-sm text-danger">
                 <ShieldX className="size-4" aria-hidden="true" />
-                {lang === "ro" ? "Cont compromis" : "Аккаунт скомпрометирован"}
+                {badTag[lang]}
               </p>
             ) : (
               <p className="mt-4 flex items-center gap-2 rounded-xl bg-success/15 px-4 py-3 text-sm text-success">
-                <PhoneOff className="size-4" aria-hidden="true" />
-                {lang === "ro" ? "Apel închis, număr blocat" : "Звонок сброшен, номер заблокирован"}
+                <ShieldCheck className="size-4" aria-hidden="true" />
+                {goodTag[lang]}
               </p>
             )
           }
@@ -134,9 +151,9 @@ export function Mission2Call({ mission }: { mission: Mission }) {
       {step === 3 && (
         <TheoryPanel
           missionId={mission.id}
-          points={mission2.theory}
-          badge={mission2.badge}
-          reaction={reactions2.good}
+          points={data.theory}
+          badge={data.badge}
+          reaction={data.reactions.good}
           onReplay={restart}
         />
       )}
