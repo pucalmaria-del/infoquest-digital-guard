@@ -2,7 +2,14 @@ import { useState } from "react";
 import { Play, Search, CheckCircle2, XCircle } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { mission4, reactions4, type Mission } from "@/data/missions";
-import { ConsequencePanel, MissionShell, Panel, PrimaryButton, StoryPanel, TheoryPanel } from "./shared";
+import {
+  ConsequencePanel,
+  MissionShell,
+  Panel,
+  PrimaryButton,
+  StoryPanel,
+  TheoryPanel,
+} from "./shared";
 
 export function Mission4Deepfake({ mission }: { mission: Mission }) {
   const { lang, t } = useI18n();
@@ -109,7 +116,10 @@ export function Mission4Deepfake({ mission }: { mission: Mission }) {
                 return (
                   <li key={clue.id} className="flex gap-2 text-sm">
                     {good ? (
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-success" aria-hidden="true" />
+                      <CheckCircle2
+                        className="mt-0.5 size-4 shrink-0 text-success"
+                        aria-hidden="true"
+                      />
                     ) : (
                       <XCircle className="mt-0.5 size-4 shrink-0 text-danger" aria-hidden="true" />
                     )}

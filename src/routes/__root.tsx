@@ -14,7 +14,6 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider } from "../lib/i18n";
 import { ProgressProvider } from "../lib/progress";
 
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -143,4 +142,3 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
-

@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { QRCodeSVG } from "qrcode.react";
 import { Download, Image as ImageIcon, QrCode, Users, PlayCircle, Trash2 } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
@@ -98,9 +104,7 @@ export function BottomBlocks() {
           onClick={() => setOpen("qr")}
         >
           <span className="grid size-[88px] place-items-center rounded-lg bg-foreground p-2">
-            {url ? (
-              <QRCodeSVG value={url} size={72} bgColor="#ffffff" fgColor="#0b1220" />
-            ) : null}
+            {url ? <QRCodeSVG value={url} size={72} bgColor="#ffffff" fgColor="#0b1220" /> : null}
           </span>
         </BlockShell>
 
@@ -133,7 +137,11 @@ export function BottomBlocks() {
               </DialogHeader>
               <label className="focus-ring flex cursor-pointer flex-col items-center gap-3 rounded-2xl border-2 border-dashed border-neon/50 p-6">
                 {logo ? (
-                  <img src={logo} alt={t.bottom.logo} className="size-32 rounded-full object-cover" />
+                  <img
+                    src={logo}
+                    alt={t.bottom.logo}
+                    className="size-32 rounded-full object-cover"
+                  />
                 ) : (
                   <ImageIcon className="size-10 text-neon" aria-hidden="true" />
                 )}
@@ -169,7 +177,13 @@ export function BottomBlocks() {
               <div className="flex flex-col items-center gap-4">
                 <span className="grid size-[272px] place-items-center rounded-2xl bg-foreground p-4">
                   {url ? (
-                    <QRCodeSVG id="iq-qr-large" value={url} size={240} bgColor="#ffffff" fgColor="#0b1220" />
+                    <QRCodeSVG
+                      id="iq-qr-large"
+                      value={url}
+                      size={240}
+                      bgColor="#ffffff"
+                      fgColor="#0b1220"
+                    />
                   ) : null}
                 </span>
                 <code className="break-all text-xs text-muted-foreground">{url}</code>

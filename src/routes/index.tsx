@@ -138,7 +138,9 @@ function Index() {
             })}
             <div
               className={`flex items-center gap-3 rounded-2xl border p-4 sm:col-span-2 ${
-                allMvpDone ? "border-neon bg-neon/10 glow-neon" : "border-dashed border-border bg-card/60"
+                allMvpDone
+                  ? "border-neon bg-neon/10 glow-neon"
+                  : "border-dashed border-border bg-card/60"
               }`}
             >
               <ShieldCheck

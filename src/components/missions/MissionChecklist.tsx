@@ -2,16 +2,17 @@ import { useState } from "react";
 import { CheckCircle2, XCircle, FileWarning } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import type { ChecklistMission, Mission } from "@/data/missions";
-import { ConsequencePanel, MissionShell, Panel, PrimaryButton, StoryPanel, TheoryPanel } from "./shared";
+import {
+  ConsequencePanel,
+  MissionShell,
+  Panel,
+  PrimaryButton,
+  StoryPanel,
+  TheoryPanel,
+} from "./shared";
 
 /** Generic "select all correct actions / signals" mission. */
-export function MissionChecklist({
-  mission,
-  data,
-}: {
-  mission: Mission;
-  data: ChecklistMission;
-}) {
+export function MissionChecklist({ mission, data }: { mission: Mission; data: ChecklistMission }) {
   const { lang, t } = useI18n();
   const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
   const [picked, setPicked] = useState<string[]>([]);
@@ -92,7 +93,10 @@ export function MissionChecklist({
                 return (
                   <li key={item.id} className="flex gap-2 text-sm">
                     {ok ? (
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-success" aria-hidden="true" />
+                      <CheckCircle2
+                        className="mt-0.5 size-4 shrink-0 text-success"
+                        aria-hidden="true"
+                      />
                     ) : (
                       <XCircle className="mt-0.5 size-4 shrink-0 text-danger" aria-hidden="true" />
                     )}

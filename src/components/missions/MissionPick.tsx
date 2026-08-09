@@ -34,7 +34,9 @@ export function MissionPick({ mission, data }: { mission: Mission; data: PickMis
                       : "border-border bg-card/70 hover:border-neon hover:bg-secondary"
                   }`}
                 >
-                  <span className="block text-sm font-bold text-foreground">{card.title[lang]}</span>
+                  <span className="block text-sm font-bold text-foreground">
+                    {card.title[lang]}
+                  </span>
                   <span className="mt-2 block text-xs leading-relaxed text-muted-foreground">
                     {card.body[lang]}
                   </span>
@@ -60,7 +62,10 @@ export function MissionPick({ mission, data }: { mission: Mission; data: PickMis
               {data.cards.map((card) => (
                 <li key={card.id} className="flex gap-2 text-sm">
                   {card.real ? (
-                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-success" aria-hidden="true" />
+                    <CheckCircle2
+                      className="mt-0.5 size-4 shrink-0 text-success"
+                      aria-hidden="true"
+                    />
                   ) : (
                     <XCircle className="mt-0.5 size-4 shrink-0 text-danger" aria-hidden="true" />
                   )}
