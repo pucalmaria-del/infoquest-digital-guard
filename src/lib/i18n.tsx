@@ -17,10 +17,8 @@ export const strings = {
     brand: "InfoQuest Cahul",
     tagline: "Scutul comunității digitale",
     motto: "Observă. Verifică. Protejează comunitatea.",
-    heroLead:
-      "Un joc educațional bilingv pentru elevi, profesori, familii și întreaga comunitate.",
-    heroSub:
-      "Învață să recunoști fraudele, dezinformarea, deepfake-urile și pericolele digitale.",
+    heroLead: "Un joc educațional bilingv pentru elevi, profesori, familii și întreaga comunitate.",
+    heroSub: "Învață să recunoști fraudele, dezinformarea, deepfake-urile și pericolele digitale.",
     storyTitle: "Dosarul: Umbra",
     story:
       "Orașul s-a conectat la Rețeaua Comunității. Dar în rețea a apărut un actor anonim — Umbra: sparge conturi, sună locuitorii în numele operatorilor, publică video falsificate și seamănă zvonuri între vorbitorii de română și de rusă.",
@@ -90,10 +88,8 @@ export const strings = {
     brand: "InfoQuest Cahul",
     tagline: "Щит цифрового сообщества",
     motto: "Наблюдай. Проверяй. Защищай сообщество.",
-    heroLead:
-      "Двуязычная образовательная игра для школьников, учителей, семей и всего сообщества.",
-    heroSub:
-      "Научись распознавать мошенничество, дезинформацию, дипфейки и цифровые угрозы.",
+    heroLead: "Двуязычная образовательная игра для школьников, учителей, семей и всего сообщества.",
+    heroSub: "Научись распознавать мошенничество, дезинформацию, дипфейки и цифровые угрозы.",
     storyTitle: "Дело: Тень",
     story:
       "Город подключился к Сети Сообщества. Но в сети завёлся анонимный актор — Тень: взламывает аккаунты, звонит жителям от имени операторов, публикует поддельные видео и сеет слухи между русско- и румыноязычными жителями.",
@@ -149,8 +145,7 @@ export const strings = {
       role: "Роль",
       demo: "Демонстрация игры",
       demoHint: "Демонстрационное видео появится здесь.",
-      demoMissing:
-        "Ссылка на видео пока не настроена. Замени DEMO_VIDEO_URL в src/data/config.ts.",
+      demoMissing: "Ссылка на видео пока не настроена. Замени DEMO_VIDEO_URL в src/data/config.ts.",
     },
     a11y: {
       openMission: "Открыть миссию",
@@ -184,10 +179,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     window.localStorage.setItem(STORAGE_KEY, l);
   }, []);
 
-  const value = useMemo(
-    () => ({ lang, setLang, t: strings[lang] as Strings }),
-    [lang, setLang],
-  );
+  const value = useMemo(() => ({ lang, setLang, t: strings[lang] as Strings }), [lang, setLang]);
 
   return <LangContext.Provider value={value}>{children}</LangContext.Provider>;
 }

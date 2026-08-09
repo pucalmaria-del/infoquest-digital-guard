@@ -50,7 +50,11 @@ export function CharacterEmotion({
       ) : (
         <>
           <ellipse cx="50" cy="52" rx="28" ry="31" fill={c.tone} />
-          <path d="M 22 44 Q 50 12 78 44 Q 68 30 50 28 Q 32 30 22 44" fill={c.color} opacity="0.85" />
+          <path
+            d="M 22 44 Q 50 12 78 44 Q 68 30 50 28 Q 32 30 22 44"
+            fill={c.color}
+            opacity="0.85"
+          />
         </>
       )}
       <g stroke="#1b2233" strokeWidth="3.2" strokeLinecap="round" fill="none">
@@ -68,7 +72,13 @@ export function CharacterEmotion({
           <circle cx="61" cy={eyeY} r="4" fill="#1b2233" />
         </>
       )}
-      <path d={mouth[emotion]} stroke="#1b2233" strokeWidth="3.4" strokeLinecap="round" fill="none" />
+      <path
+        d={mouth[emotion]}
+        stroke="#1b2233"
+        strokeWidth="3.4"
+        strokeLinecap="round"
+        fill="none"
+      />
       {emotion === "sad" && <circle cx="42" cy="60" r="3" fill="var(--neon)" opacity="0.9" />}
       {emotion === "angry" && (
         <path d="M 70 26 L 78 18" stroke="var(--danger)" strokeWidth="3" strokeLinecap="round" />

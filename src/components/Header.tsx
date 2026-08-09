@@ -45,11 +45,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-3 px-4 py-3">
-        <Link
-          to="/"
-          className="focus-ring flex items-center gap-2 rounded-md"
-          aria-label={t.brand}
-        >
+        <Link to="/" className="focus-ring flex items-center gap-2 rounded-md" aria-label={t.brand}>
           <span className="relative grid size-10 place-items-center rounded-lg border border-neon/50 bg-card glow-neon">
             <ShieldCheck className="size-5 text-neon" aria-hidden="true" />
           </span>

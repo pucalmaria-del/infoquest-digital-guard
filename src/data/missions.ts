@@ -209,7 +209,10 @@ export const mission2 = {
         },
         {
           kind: "leak",
-          text: { ro: "Bine, bine — codul este 4 8 2 9 1 7.", ru: "Ладно, ладно — код 4 8 2 9 1 7." },
+          text: {
+            ro: "Bine, bine — codul este 4 8 2 9 1 7.",
+            ru: "Ладно, ладно — код 4 8 2 9 1 7.",
+          },
         },
       ],
     },
@@ -382,12 +385,19 @@ export const mission5 = {
   ru: {
     label: "Версия RU",
     tokens: [
-      { text: "СРОЧНО!!!", manipulative: true, note: { ro: "Urgență falsă adăugată.", ru: "Добавлена ложная срочность." } },
+      {
+        text: "СРОЧНО!!!",
+        manipulative: true,
+        note: { ro: "Urgență falsă adăugată.", ru: "Добавлена ложная срочность." },
+      },
       { text: "Воду" },
       {
         text: "полностью",
         manipulative: true,
-        note: { ro: "Amplificator absent în original.", ru: "Усилитель, которого нет в оригинале." },
+        note: {
+          ro: "Amplificator absent în original.",
+          ru: "Усилитель, которого нет в оригинале.",
+        },
       },
       { text: "отключают" },
       { text: "на" },
@@ -402,7 +412,10 @@ export const mission5 = {
       {
         text: "власти",
         manipulative: true,
-        note: { ro: "Se introduce un „vinovat”, absent din fapt.", ru: "Вводится «виновник», которого нет в факте." },
+        note: {
+          ro: "Se introduce un „vinovat”, absent din fapt.",
+          ru: "Вводится «виновник», которого нет в факте.",
+        },
       },
       {
         text: "скрывают",
@@ -444,7 +457,6 @@ export const mission5 = {
   },
   badge: { ro: "Insigna „Punte lingvistică”", ru: "Бейдж «Языковой мост»" },
 };
-
 
 /* ------------------------- Generic mission shapes ------------------------- */
 
@@ -513,7 +525,10 @@ export const mission1: ChecklistMission = {
     {
       id: "pass",
       correct: true,
-      label: { ro: "Schimbă imediat parola cu una lungă și unică", ru: "Сразу смени пароль на длинный и уникальный" },
+      label: {
+        ro: "Schimbă imediat parola cu una lungă și unică",
+        ru: "Сразу смени пароль на длинный и уникальный",
+      },
       explain: {
         ro: "Parola veche e deja publică — trebuie înlocuită peste tot unde era refolosită.",
         ru: "Старый пароль уже публичен — его надо заменить везде, где он повторялся.",
@@ -522,7 +537,10 @@ export const mission1: ChecklistMission = {
     {
       id: "2fa",
       correct: true,
-      label: { ro: "Activează autentificarea în doi pași (2FA)", ru: "Включи двухфакторную аутентификацию (2FA)" },
+      label: {
+        ro: "Activează autentificarea în doi pași (2FA)",
+        ru: "Включи двухфакторную аутентификацию (2FA)",
+      },
       explain: {
         ro: "Chiar dacă parola scapă din nou, intrusul nu are al doilea factor.",
         ru: "Даже если пароль снова утечёт, у злоумышленника не будет второго фактора.",
@@ -531,7 +549,10 @@ export const mission1: ChecklistMission = {
     {
       id: "sessions",
       correct: true,
-      label: { ro: "Închide toate sesiunile active de pe alte dispozitive", ru: "Заверши все активные сессии на других устройствах" },
+      label: {
+        ro: "Închide toate sesiunile active de pe alte dispozitive",
+        ru: "Заверши все активные сессии на других устройствах",
+      },
       explain: {
         ro: "Fără asta, intrusul rămâne conectat chiar și după schimbarea parolei.",
         ru: "Иначе злоумышленник остаётся в аккаунте даже после смены пароля.",
@@ -540,7 +561,10 @@ export const mission1: ChecklistMission = {
     {
       id: "warn",
       correct: true,
-      label: { ro: "Avertizează prietenii că din contul tău pot veni cereri de bani", ru: "Предупреди друзей, что с твоего аккаунта могут просить деньги" },
+      label: {
+        ro: "Avertizează prietenii că din contul tău pot veni cereri de bani",
+        ru: "Предупреди друзей, что с твоего аккаунта могут просить деньги",
+      },
       explain: {
         ro: "Conturile furate sunt folosite pentru a înșela contactele apropiate.",
         ru: "Угнанные аккаунты используют, чтобы обманывать близкие контакты.",
@@ -549,7 +573,10 @@ export const mission1: ChecklistMission = {
     {
       id: "reply",
       correct: false,
-      label: { ro: "Răspunde la e-mailul suspect cerând explicații", ru: "Ответь на подозрительное письмо с просьбой объяснить" },
+      label: {
+        ro: "Răspunde la e-mailul suspect cerând explicații",
+        ru: "Ответь на подозрительное письмо с просьбой объяснить",
+      },
       explain: {
         ro: "Răspunsul confirmă că adresa e activă și pornește o nouă rundă de atacuri.",
         ru: "Ответ подтверждает, что адрес живой, и запускает новую волну атак.",
@@ -558,7 +585,10 @@ export const mission1: ChecklistMission = {
     {
       id: "same",
       correct: false,
-      label: { ro: "Pune aceeași parolă, dar cu o cifră în plus", ru: "Поставь тот же пароль, но с лишней цифрой" },
+      label: {
+        ro: "Pune aceeași parolă, dar cu o cifră în plus",
+        ru: "Поставь тот же пароль, но с лишней цифрой",
+      },
       explain: {
         ro: "Variațiile mici sunt primele testate de programele de spargere.",
         ru: "Мелкие вариации — первое, что перебирают программы взлома.",
@@ -567,7 +597,10 @@ export const mission1: ChecklistMission = {
     {
       id: "wait",
       correct: false,
-      label: { ro: "Așteaptă câteva zile, poate a fost o eroare", ru: "Подожди пару дней — вдруг это ошибка" },
+      label: {
+        ro: "Așteaptă câteva zile, poate a fost o eroare",
+        ru: "Подожди пару дней — вдруг это ошибка",
+      },
       explain: {
         ro: "Fiecare oră de întârziere înseamnă mai multe conturi legate pierdute.",
         ru: "Каждый час промедления — это ещё несколько потерянных связанных аккаунтов.",
@@ -730,7 +763,10 @@ export const mission6: ChecklistMission = {
     {
       id: "source",
       correct: true,
-      label: { ro: "Caută anunțul pe pagina oficială a spitalului", ru: "Ищи объявление на официальной странице больницы" },
+      label: {
+        ro: "Caută anunțul pe pagina oficială a spitalului",
+        ru: "Ищи объявление на официальной странице больницы",
+      },
       explain: {
         ro: "Prima verificare: instituția însăși, nu cel care a trimis mesajul.",
         ru: "Первая проверка — сама организация, а не тот, кто прислал сообщение.",
@@ -739,7 +775,10 @@ export const mission6: ChecklistMission = {
     {
       id: "ask",
       correct: true,
-      label: { ro: "Întreabă politicos autorul: „De unde ai informația?”", ru: "Вежливо спроси автора: «Откуда информация?»" },
+      label: {
+        ro: "Întreabă politicos autorul: „De unde ai informația?”",
+        ru: "Вежливо спроси автора: «Откуда информация?»",
+      },
       explain: {
         ro: "„O cunoștință a spus” nu este sursă. Întrebarea oprește lanțul.",
         ru: "«Знакомая сказала» — не источник. Вопрос обрывает цепочку.",
@@ -748,7 +787,10 @@ export const mission6: ChecklistMission = {
     {
       id: "correct",
       correct: true,
-      label: { ro: "Publică dezmințirea în același grup, cu link oficial", ru: "Опубликуй опровержение в том же чате со ссылкой на источник" },
+      label: {
+        ro: "Publică dezmințirea în același grup, cu link oficial",
+        ru: "Опубликуй опровержение в том же чате со ссылкой на источник",
+      },
       explain: {
         ro: "Corectarea trebuie să ajungă exact unde a fost zvonul.",
         ru: "Опровержение должно попасть именно туда, где был слух.",
@@ -757,7 +799,10 @@ export const mission6: ChecklistMission = {
     {
       id: "calm",
       correct: true,
-      label: { ro: "Scrie calm, fără să faci pe cineva „prost”", ru: "Пиши спокойно, никого не называя «глупым»" },
+      label: {
+        ro: "Scrie calm, fără să faci pe cineva „prost”",
+        ru: "Пиши спокойно, никого не называя «глупым»",
+      },
       explain: {
         ro: "Rușinarea îi face pe oameni să apere zvonul în loc să-l verifice.",
         ru: "Стыд заставляет людей защищать слух, а не проверять его.",
@@ -766,7 +811,10 @@ export const mission6: ChecklistMission = {
     {
       id: "forward",
       correct: false,
-      label: { ro: "Retrimite mesajul „ca să afle și alții, în caz că e adevărat”", ru: "Перешли сообщение «вдруг правда, пусть знают»" },
+      label: {
+        ro: "Retrimite mesajul „ca să afle și alții, în caz că e adevărat”",
+        ru: "Перешли сообщение «вдруг правда, пусть знают»",
+      },
       explain: {
         ro: "„În caz că” este exact mecanismul prin care zvonul crește exponențial.",
         ru: "«Вдруг правда» — это и есть механизм, которым слух растёт лавиной.",
@@ -775,7 +823,10 @@ export const mission6: ChecklistMission = {
     {
       id: "screenshot",
       correct: false,
-      label: { ro: "Fă un screenshot și postează-l pe pagina ta cu „Ce părere aveți?”", ru: "Сделай скриншот и выложи у себя: «Что думаете?»" },
+      label: {
+        ro: "Fă un screenshot și postează-l pe pagina ta cu „Ce părere aveți?”",
+        ru: "Сделай скриншот и выложи у себя: «Что думаете?»",
+      },
       explain: {
         ro: "Un screenshot distribuie zvonul unui public nou, fără verificare.",
         ru: "Скриншот разносит слух на новую аудиторию без проверки.",
@@ -966,7 +1017,10 @@ export const mission8: ChecklistMission = {
     {
       id: "domain",
       correct: true,
-      label: { ro: "Domeniul real este secure-login24.top, nu primăria", ru: "Настоящий домен — secure-login24.top, а не мэрия" },
+      label: {
+        ro: "Domeniul real este secure-login24.top, nu primăria",
+        ru: "Настоящий домен — secure-login24.top, а не мэрия",
+      },
       explain: {
         ro: "Citește de la dreapta ultimului punct spre stânga: acolo e adevăratul proprietar.",
         ru: "Читай справа налево от последней точки: там настоящий владелец сайта.",
@@ -993,7 +1047,10 @@ export const mission8: ChecklistMission = {
     {
       id: "timer",
       correct: true,
-      label: { ro: "Cronometru „sesiunea expiră în 5 minute”", ru: "Таймер «сессия истекает через 5 минут»" },
+      label: {
+        ro: "Cronometru „sesiunea expiră în 5 minute”",
+        ru: "Таймер «сессия истекает через 5 минут»",
+      },
       explain: {
         ro: "Cronometrul există ca să nu ai timp să verifici adresa.",
         ru: "Таймер существует, чтобы у тебя не было времени проверить адрес.",
@@ -1011,7 +1068,10 @@ export const mission8: ChecklistMission = {
     {
       id: "ro",
       correct: false,
-      label: { ro: "Textul este scris corect în română", ru: "Текст написан по-румынски без ошибок" },
+      label: {
+        ro: "Textul este scris corect în română",
+        ru: "Текст написан по-румынски без ошибок",
+      },
       explain: {
         ro: "Paginile false moderne sunt traduse corect: gramatica nu mai e un criteriu.",
         ru: "Современные фальшивки переводят грамотно: грамматика больше не критерий.",

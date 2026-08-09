@@ -54,24 +54,21 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const complete = useCallback(
-    (id: number) => {
-      setState((prev) => {
-        if (prev.completed.includes(id)) return prev;
-        const next = {
-          completed: [...prev.completed, id].sort((a, b) => a - b),
-          xp: prev.xp + XP_PER_MISSION,
-        };
-        try {
-          window.localStorage.setItem(KEY, JSON.stringify(next));
-        } catch {
-          /* storage unavailable */
-        }
-        return next;
-      });
-    },
-    [],
-  );
+  const complete = useCallback((id: number) => {
+    setState((prev) => {
+      if (prev.completed.includes(id)) return prev;
+      const next = {
+        completed: [...prev.completed, id].sort((a, b) => a - b),
+        xp: prev.xp + XP_PER_MISSION,
+      };
+      try {
+        window.localStorage.setItem(KEY, JSON.stringify(next));
+      } catch {
+        /* storage unavailable */
+      }
+      return next;
+    });
+  }, []);
 
   const reset = useCallback(() => persist({ completed: [], xp: 0 }), [persist]);
 
